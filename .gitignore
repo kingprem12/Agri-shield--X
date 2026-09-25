@@ -20,3 +20,10 @@ data/satellite/sindh.db
 data/satellite/cache/
 data/satellite/*.tmp
 data/app.db
+
+# India dataset (rebuild with ml/india/fetch_power.py; raw NASA POWER responses are cached)
+data/india/india.db
+data/india/raw/
+data/india/cache/
+data/india/india-official.geojson
+data/india/*.tmp

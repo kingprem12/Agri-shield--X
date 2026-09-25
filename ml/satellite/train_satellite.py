@@ -78,7 +78,7 @@ def scores(y, p):
 
 
 def pso(lgb, Xtr, Ytr, Xva, Yva, particles, iterations, rng, log):
-    """Particle swarm over BOUNDS. Fitness = mean normalised validation MAE over NDVI and LST."""
+    """Particle swarm over BOUNDS. Fitness = mean normalised validation MAE over all target columns."""
     scale = Yva.std(0)
     pos = rng.uniform(BOUNDS[:, 0], BOUNDS[:, 1], size=(particles, len(BOUNDS)))
     vel = np.zeros_like(pos)
@@ -87,7 +87,7 @@ def pso(lgb, Xtr, Ytr, Xva, Yva, particles, iterations, rng, log):
     span = BOUNDS[:, 1] - BOUNDS[:, 0]
     for it in range(iterations):
         for i in range(particles):
-            pred = np.column_stack([fit(lgb, pos[i], Xtr, Ytr[:, j]).predict(Xva) for j in range(2)])
+            pred = np.column_stack([fit(lgb, pos[i], Xtr, Ytr[:, j]).predict(Xva) for j in range(Ytr.shape[1])])
             f = float(np.mean(np.mean(np.abs(pred - Yva), 0) / scale))
             if f < pbest_f[i]:
                 pbest[i], pbest_f[i] = pos[i].copy(), f

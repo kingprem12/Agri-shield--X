@@ -23,6 +23,24 @@ server ignores `.htaccess`.
 
 Each reading is saved to `data/area_N/readings-YYYY-MM-DD.json` and shown on the Live Dashboard.
 
+## India drought model (PSO-LightGBM), Drought Predictor page
+
+Data: NASA POWER monthly climate (MERRA-2) for 1,169 points on a 0.5° grid inside India, 1981–2025:
+temperature, humidity, rainfall, wind speed, root-zone and surface soil moisture.
+
+```bash
+.venv/bin/python ml/india/fetch_power.py    # ~17 min first time (cached after), -> data/india/india.db + assets/india-*.geojson
+.venv/bin/python ml/india/train_india.py    # PSO search + training (~4 min) -> data/india/model.json
+php ml/india/test_parity.php                # PHP inference == native LightGBM
+```
+
+- Target: root-zone soil moisture 1, 2 and 3 months ahead. It is ranked against the location's
+  1981–2010 values for that month (percentile) and mapped to US Drought Monitor categories D0–D4.
+- Split by time: train 1981–2014, validation 2015–2018 (PSO fitness), test 2019–2025.
+- `drought.php` + `api/drought.php` + `india_engine.php`: India district map (official boundaries),
+  form auto-filled from the record, what-if edits, 3-month outlook, prediction log in `data/app.db`.
+- Map boundaries: udit-001/india-maps-data (district GeoJSON), simplified.
+
 ## Satellite drought model (PSO-LightGBM)
 
 Data: monthly MODIS NDVI, land surface temperature and precipitation, 4,937 grid cells
@@ -40,10 +58,6 @@ php ml/satellite/test_parity.php                                                
 - Split by time: train 2001–2017, validation 2018–2020 (PSO fitness), test 2021–2023
   (reported metrics, compared with persistence and climatology baselines).
 - PHP evaluates the exported trees directly (`satellite_engine.php`); Python is only needed to train.
-- **Drought Predictor** page (`drought.php`, API `api/drought.php`): pick a Sindh city or click the map,
-  choose a month, and the model forecasts the next 3 months. The form auto-fills NDVI, LST and rainfall
-  from the satellite record; edit them for a what-if scenario. Predictions are logged in `data/app.db`
-  (local SQLite) and feed the KPI cards, history table and map markers.
 - **Satellite Report** page (`satellite.php`): full backtest view, regional forecast vs actual maps,
   and the model evaluation table.
 
