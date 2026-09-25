@@ -11,7 +11,7 @@ try {
         if (!is_array($decoded)) { http_response_code(400); throw new Exception('Invalid JSON request body'); }
         $input = $decoded;
     }
-    if (!secure_equals(DEVICE_API_KEY, (string)request_value($input, 'api_key', ''))) {
+    if (DEVICE_API_KEY === '' || !secure_equals(DEVICE_API_KEY, (string)request_value($input, 'api_key', ''))) {
         http_response_code(401);
         throw new Exception('Invalid API key');
     }

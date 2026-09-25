@@ -10,3 +10,12 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+config.local.php
+
+# Python virtualenv
+.venv/
+
+# Satellite dataset (rebuild with ml/satellite/build_dataset.py) and map cache
+data/satellite/sindh.db
+data/satellite/cache/
+data/satellite/*.tmp

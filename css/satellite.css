@@ -1,0 +1,14 @@
+.data-badge{max-width:1120px;margin:0 auto 14px;padding:12px 16px;border-radius:12px;background:#eef4ff;border-left:5px solid #3485ed;color:#2b3f5c;font-size:14px;line-height:1.5}
+.drought-badge{padding:5px 9px;border-radius:8px;white-space:nowrap;font-weight:600;font-size:12px}
+.d-extreme{background:#7f1d1d;color:#fff}.d-severe{background:#dc2626;color:#fff}.d-moderate{background:#f97316;color:#fff}.d-mild{background:#facc15;color:#422006}.d-no{background:#dcfce7;color:#14532d}
+.map-panel,.model-panel{margin:20px 0}
+.map-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.map-figure{margin:0;text-align:center}.map-figure figcaption{font-weight:700;color:#243b43;margin-bottom:8px}
+.drought-map{width:100%;height:auto;background:#f3f6f8;border-radius:12px;cursor:pointer}.drought-map rect:hover{stroke:#111;stroke-width:1}
+.map-summary{margin:8px 0 0;font-size:14px;color:#4c5d68}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0 4px}.map-legend span{padding:5px 10px;border-radius:8px;font-size:12px;font-weight:600}
+.metric-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:6px 0 18px}
+.metric-cards div{background:#f7faff;border:1px solid #d5e0ec;border-radius:14px;padding:14px;text-align:center}
+.metric-cards small{display:block;color:#5a6b7c;font-size:12px}.metric-cards strong{font-size:26px;color:#35257a}
+.model-panel .forecast-table-wrap table{min-width:720px}
+@media(max-width:700px){.outlook-grid{grid-template-columns:1fr}.map-row{grid-template-columns:1fr}}

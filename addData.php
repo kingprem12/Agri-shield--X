@@ -3,7 +3,7 @@
  * Compatibility endpoint for the supplied ESP32 controller.
  *
  * Expected request:
- * addData.php?temp=30.5&hum=65&soil=68&rain=25
+ * addData.php?api_key=KEY&temp=30.5&hum=65&soil=68&rain=25
  *
  * The controller sends soil and rain as percentages. Internally this project
  * keeps the original 12-bit ADC scale so existing prediction/rain logic does
@@ -13,6 +13,10 @@ require_once __DIR__ . '/database.php';
 header('Content-Type: application/json; charset=utf-8');
 
 try {
+    if (DEVICE_API_KEY === '' || !secure_equals(DEVICE_API_KEY, (string)request_value($_GET, 'api_key', ''))) {
+        http_response_code(401);
+        throw new Exception('Invalid API key');
+    }
     foreach (array('temp', 'hum', 'soil', 'rain') as $field) {
         if (!isset($_GET[$field]) || !is_numeric($_GET[$field])) {
             http_response_code(422);

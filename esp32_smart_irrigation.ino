@@ -1,7 +1,7 @@
 #include <WiFi.h>
-#include "iot_functions.h"
+#include <HTTPClient.h>
 #include <DHT.h>
-#include "secrets.h"  // WIFI_SSID, WIFI_PASSWORD (copy secrets.example.h to secrets.h)
+#include "secrets.h"  // WIFI_SSID, WIFI_PASSWORD, SERVER_URL, DEVICE_API_KEY (copy secrets.example.h)
 
 #define DHT_PIN 27
 #define DHT_TYPE DHT11
@@ -9,7 +9,7 @@
 #define SOIL_PIN 34
 #define RAIN_PIN 35
 
-const char* host = "codexedgesolution.in";
+const unsigned long SEND_INTERVAL_MS = 10000;
 
 DHT dht(DHT_PIN, DHT_TYPE);
 
@@ -17,7 +17,8 @@ void setup()
 {
   Serial.begin(115200);
   analogReadResolution(12);
-  initWiFi(WIFI_SSID, WIFI_PASSWORD, 1);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED)
   {
@@ -88,7 +89,22 @@ void loop()
 
   Serial.println("--------------------------------");
 
-  String url = "/27project/CXPEM20260004-AGRI_SHIELD/addData.php?temp=";
+  if (isnan(temp) || isnan(hum))
+  {
+    Serial.println("DHT11 read failed - reading not sent");
+    delay(SEND_INTERVAL_MS);
+    return;
+  }
+
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("WiFi lost - reconnecting");
+    WiFi.reconnect();
+    delay(SEND_INTERVAL_MS);
+    return;
+  }
+
+  String url = String(SERVER_URL) + "/addData.php?api_key=" + DEVICE_API_KEY + "&temp=";
   url += String(temp);
   url += "&hum=";
   url += String(hum);
@@ -99,7 +115,15 @@ void loop()
 
   Serial.print("Sending: ");
   Serial.println(url);
-  requestURL(host, url);
 
-  delay(2000);
+  HTTPClient http;
+  http.begin(url);
+  int code = http.GET();
+  Serial.print("Server: ");
+  Serial.print(code);
+  Serial.print(" ");
+  Serial.println(code > 0 ? http.getString() : http.errorToString(code));
+  http.end();
+
+  delay(SEND_INTERVAL_MS);
 }
