@@ -33,12 +33,41 @@ def load(db):
     con = sqlite3.connect(db)
     meta = dict(con.execute('SELECT key, value FROM meta'))
     n = con.execute('SELECT COUNT(*) FROM cells').fetchone()[0]
-    T, first_year = int(meta['months']), int(meta['first_year'])
-    obs = np.array(con.execute(f'SELECT {", ".join(VARS)} FROM obs ORDER BY cell_id, t').fetchall(), dtype=float)
+    first_year = int(meta['first_year'])
+    # Months appended by validate_live.py are real-time validation data, never training data.
+    T = int(meta.get('live_from', meta['months']))
+    obs = np.array(con.execute(f'SELECT {", ".join(VARS)} FROM obs WHERE t < ? ORDER BY cell_id, t', (T,)).fetchall(), dtype=float)
     g = {v: obs[:, i].reshape(n, T) for i, v in enumerate(VARS)}
     latlon = np.array(con.execute('SELECT lat, lon FROM cells ORDER BY id').fetchall())
     con.close()
     return g, latlon, first_year, T
+
+
+def metrics(y, pred, X, cells, months, clim):
+    """Soil-moisture regression scores plus drought-category agreement (shared with validate_live.py)."""
+    pct_true, pct_pred = percentile(y, cells, months, clim), percentile(pred, cells, months, clim)
+    c_true, c_pred = category(pct_true), category(pct_pred)
+    d_true, d_pred = pct_true <= 20, pct_pred <= 20  # D1 or worse
+    tp = int(np.sum(d_true & d_pred))
+    persistence = X[:, FEATURES.index('sm_root_0')]
+    climo = X[:, FEATURES.index('clim_sm_target')]
+    d_pers = percentile(persistence, cells, months, clim) <= 20
+    tp_pers = int(np.sum(d_true & d_pers))
+    return dict(
+        sm_root=dict(model=scores(y, pred), persistence=scores(y, persistence), climatology=scores(y, climo),
+                     anomaly_r2=round(r2(y - climo, pred - climo), 4)),
+        percentile=dict(model=scores(pct_true, pct_pred)),
+        category_accuracy=round(float(np.mean(c_true == c_pred)), 4),
+        category_within_one=round(float(np.mean(np.abs(c_true - c_pred) <= 1)), 4),
+        drought_accuracy=round(float(np.mean(d_true == d_pred)), 4),
+        drought_precision=round(tp / max(1, int(d_pred.sum())), 4),
+        drought_recall=round(tp / max(1, int(d_true.sum())), 4),
+        drought_f1=round(2 * tp / max(1, int(d_pred.sum() + d_true.sum())), 4),
+        drought_share_actual=round(float(d_true.mean()), 4),
+        drought_share_predicted=round(float(d_pred.mean()), 4),
+        persistence_drought_accuracy=round(float(np.mean(d_true == d_pers)), 4),
+        persistence_drought_f1=round(2 * tp_pers / max(1, int(d_pers.sum() + d_true.sum())), 4),
+        test_samples=int(len(y)))
 
 
 def save_climatology(db, clim, n):
@@ -96,25 +125,7 @@ def main():
         Xte, Yte, Ote = dataset(g, clim, latlon, h, t_val + 1, t_last)
         y, pred = Yte[:, 0], fit(lgb, best, Xfit, Yfit[:, 0]).predict(Xte)
         cells, months = np.tile(cells_all, len(y) // len(cells_all)), (Ote + h) % 12
-        pct_true, pct_pred = percentile(y, cells, months, clim), percentile(pred, cells, months, clim)
-        c_true, c_pred = category(pct_true), category(pct_pred)
-        d_true, d_pred = pct_true <= 20, pct_pred <= 20  # D1 or worse
-        tp = int(np.sum(d_true & d_pred))
-        persistence = Xte[:, FEATURES.index('sm_root_0')]
-        climo = Xte[:, FEATURES.index('clim_sm_target')]
-        evaluation[str(h)] = dict(
-            sm_root=dict(model=scores(y, pred), persistence=scores(y, persistence), climatology=scores(y, climo),
-                         anomaly_r2=round(r2(y - climo, pred - climo), 4)),
-            percentile=dict(model=scores(pct_true, pct_pred)),
-            category_accuracy=round(float(np.mean(c_true == c_pred)), 4),
-            category_within_one=round(float(np.mean(np.abs(c_true - c_pred) <= 1)), 4),
-            drought_accuracy=round(float(np.mean(d_true == d_pred)), 4),
-            drought_precision=round(tp / max(1, int(d_pred.sum())), 4),
-            drought_recall=round(tp / max(1, int(d_true.sum())), 4),
-            drought_share_actual=round(float(d_true.mean()), 4),
-            persistence_drought_accuracy=round(float(np.mean(d_true == (percentile(persistence, cells, months, clim) <= 20))), 4),
-            test_samples=int(len(y)))
-        e = evaluation[str(h)]
+        evaluation[str(h)] = e = metrics(y, pred, Xte, cells, months, clim)
         log(f'h={h}: soil moisture R2 {e["sm_root"]["model"]["r2"]} (persistence {e["sm_root"]["persistence"]["r2"]}, '
             f'climatology {e["sm_root"]["climatology"]["r2"]}), percentile R2 {e["percentile"]["model"]["r2"]}, '
             f'drought acc {e["drought_accuracy"]} (persistence {e["persistence_drought_accuracy"]}), category acc {e["category_accuracy"]}')

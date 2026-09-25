@@ -27,3 +27,5 @@ data/india/raw/
 data/india/cache/
 data/india/india-official.geojson
 data/india/*.tmp
+data/india/live_raw/
+data/validation/

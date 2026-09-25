@@ -1,0 +1,36 @@
+/* Validation page charts and blocks (uses the .dp look from drought.css). */
+.vz-root{--series-1:#2a78d6;--series-2:#eb6834;--text-secondary:#52514e;--grid:#e6ebe8;--ref:#8a948f}
+.vz-block{margin-top:18px}
+.vz-verdict{margin:0 0 18px;border-left:6px solid #22a05e}
+.vz-verdict h3{margin:6px 0;font-size:24px}.vz-verdict p{margin:0;color:#33443b;line-height:1.6}
+.vz-verdict.vz-warn{border-left-color:#d97706}.vz-verdict.vz-bad{border-left-color:#dc2626}
+.vz-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);gap:18px}
+.vz{width:100%;height:auto;display:block;overflow:visible}
+.vz .grid{stroke:var(--grid);stroke-width:1}
+.vz .tick{font-size:11px;fill:var(--text-secondary)}
+.vz .axis-title{font-size:12px;fill:var(--text-secondary);font-weight:600}
+.vz .line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.vz .dot{stroke:#fff;stroke-width:2}
+.vz .direct{font-size:12px;font-weight:600;fill:#17231d}
+.vz .ref{stroke:var(--ref);stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+.vz .ref-label{font-size:11px;fill:var(--text-secondary)}
+.vz .hit{fill:transparent;cursor:crosshair}
+.vz .crosshair{stroke:#17231d;stroke-width:1;opacity:0;pointer-events:none}
+.vz .pt{fill:var(--series-1);fill-opacity:.55;stroke:#fff;stroke-width:1}
+.vz .pt:hover{fill-opacity:1;stroke:#17231d}
+.vz-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--text-secondary);margin:0 0 8px}
+.vz-legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin:0 6px 3px 0;vertical-align:middle}
+.vz-legend i.ref{background:none;border-top:2px dashed var(--ref);height:0}
+.vz-tip{position:fixed;z-index:1000;pointer-events:none;background:#17231d;color:#fff;padding:8px 10px;border-radius:8px;font-size:12.5px;line-height:1.5;white-space:pre;box-shadow:0 6px 18px #0003}
+.vz-compare td.live{background:#eef5ff;font-weight:600}
+.vz-compare th:nth-child(odd):not(:first-child){background:#e3edfb}
+.vz-inline select{padding:8px 10px;border:1px solid #d3ddd7;border-radius:10px;background:#fff;font-size:14px}
+.vz-farm-form{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin-bottom:14px}
+.vz-farm-form label{display:grid;gap:6px;font-size:13px;font-weight:600;color:#33443b}
+.vz-farm-form input{padding:10px 12px;border:1px solid #d3ddd7;border-radius:10px;background:#f8faf9;font-size:15px;width:170px}
+.vz-farm-form .dp-primary{flex:0 0 auto;padding:11px 18px;font-size:14px}
+.vz-err{color:#b42318;font-size:13px}
+.vz-sub{margin:18px 0 8px;font-size:15px}
+.method summary{font-weight:700;cursor:pointer}.method p{font-size:14px;line-height:1.65;color:#33443b}
+@media(max-width:980px){.vz-grid{grid-template-columns:1fr}}
+.dp .vz-full{max-height:none}

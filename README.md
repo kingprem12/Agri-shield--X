@@ -41,6 +41,18 @@ php ml/india/test_parity.php                # PHP inference == native LightGBM
   form auto-filled from the record, what-if edits, 3-month outlook, prediction log in `data/app.db`.
 - Map boundaries: udit-001/india-maps-data (district GeoJSON), simplified.
 
+### Real-time validation (Validation page)
+
+```bash
+.venv/bin/python ml/india/validate_live.py   # re-run monthly
+```
+
+Downloads NASA POWER *daily* data published after the training data (2026 onward), averages it into
+months exactly like the seed data, appends it to `india.db` (the trainer never uses these months) and
+scores the deployed model on it. `validation.php` shows seed-test vs real-time metrics side by side,
+per-month accuracy, predicted-vs-actual charts, and compares the ESP32 daily readings with NASA POWER
+daily values at the farm location (set on the page).
+
 ## Satellite drought model (PSO-LightGBM)
 
 Data: monthly MODIS NDVI, land surface temperature and precipitation, 4,937 grid cells
