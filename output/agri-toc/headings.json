@@ -1,0 +1,622 @@
+[
+  {
+    "title": "ABSTRACT",
+    "page": 1,
+    "physicalPage": 1
+  },
+  {
+    "title": "TABLE OF CONTENTS",
+    "page": 2,
+    "physicalPage": 2
+  },
+  {
+    "title": "LIST OF TABLES AND FIGURES",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "7.1\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "7.2\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "7.3\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "7.4\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "8.1\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "8.2\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "B.1\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "6.1\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "6.2\r\u0007",
+    "page": 3,
+    "physicalPage": 3
+  },
+  {
+    "title": "SYMBOLS AND ABBREVIATIONS",
+    "page": 4,
+    "physicalPage": 4
+  },
+  {
+    "title": "CHAPTER 1",
+    "page": 5,
+    "physicalPage": 5
+  },
+  {
+    "title": "INTRODUCTION",
+    "page": 5,
+    "physicalPage": 5
+  },
+  {
+    "title": "1 1.1 Overview",
+    "page": 5,
+    "physicalPage": 5
+  },
+  {
+    "title": "1.2 Motivation",
+    "page": 5,
+    "physicalPage": 5
+  },
+  {
+    "title": "1.3 Scope of the Project",
+    "page": 6,
+    "physicalPage": 6
+  },
+  {
+    "title": "1.4 Organization of the Report",
+    "page": 6,
+    "physicalPage": 6
+  },
+  {
+    "title": "Chapter 7 describes the hardware and software methodology in detail, including the role of each component and the flow of sensor information through the system. The output discussion explains how the collected data appears in the application and how users can interpret it. The limitations distinguish the functions demonstrated by the current implementation from features that would require further development.",
+    "page": 6,
+    "physicalPage": 6
+  },
+  {
+    "title": "1.5 Agricultural Monitoring Context",
+    "page": 6,
+    "physicalPage": 6
+  },
+  {
+    "title": "1.6 Users and Operating Scenarios",
+    "page": 7,
+    "physicalPage": 7
+  },
+  {
+    "title": "1.7 System Boundary and Assumptions",
+    "page": 8,
+    "physicalPage": 8
+  },
+  {
+    "title": "CHAPTER 2",
+    "page": 9,
+    "physicalPage": 9
+  },
+  {
+    "title": "LITERATURE REVIEW",
+    "page": 9,
+    "physicalPage": 9
+  },
+  {
+    "title": "2.1 Conventional Irrigation Monitoring",
+    "page": 9,
+    "physicalPage": 9
+  },
+  {
+    "title": "2.2 IoT Based Field Monitoring",
+    "page": 9,
+    "physicalPage": 9
+  },
+  {
+    "title": "2.3 Soil and Rain Sensor Interpretation",
+    "page": 9,
+    "physicalPage": 9
+  },
+  {
+    "title": "2.4 Trend Based Prediction",
+    "page": 9,
+    "physicalPage": 9
+  },
+  {
+    "title": "2.5 Review Summary",
+    "page": 9,
+    "physicalPage": 9
+  },
+  {
+    "title": "2.6 Comparison of Monitoring Approaches",
+    "page": 10,
+    "physicalPage": 10
+  },
+  {
+    "title": "2.7 Baseline Prediction and Alternatives",
+    "page": 10,
+    "physicalPage": 10
+  },
+  {
+    "title": "CHAPTER 3",
+    "page": 11,
+    "physicalPage": 11
+  },
+  {
+    "title": "PROBLEM IDENTIFICATION",
+    "page": 11,
+    "physicalPage": 11
+  },
+  {
+    "title": "3.1 Problem Statement",
+    "page": 11,
+    "physicalPage": 11
+  },
+  {
+    "title": "3.2 Limitations of Existing Practices",
+    "page": 11,
+    "physicalPage": 11
+  },
+  {
+    "title": "3.3 Integration Challenges",
+    "page": 11,
+    "physicalPage": 11
+  },
+  {
+    "title": "3.4 Prediction and Data Quality Challenges",
+    "page": 11,
+    "physicalPage": 11
+  },
+  {
+    "title": "3.5 Measurement and Interpretation Problems",
+    "page": 11,
+    "physicalPage": 11
+  },
+  {
+    "title": "3.6 Data Continuity and Reliability Problems",
+    "page": 12,
+    "physicalPage": 12
+  },
+  {
+    "title": "CHAPTER 4",
+    "page": 13,
+    "physicalPage": 13
+  },
+  {
+    "title": "OBJECTIVE",
+    "page": 13,
+    "physicalPage": 13
+  },
+  {
+    "title": "4.1 Objectives of the Project",
+    "page": 13,
+    "physicalPage": 13
+  },
+  {
+    "title": "4.2 Expected Outcome",
+    "page": 13,
+    "physicalPage": 13
+  },
+  {
+    "title": "4.3 Requirements and Acceptance Mapping",
+    "page": 13,
+    "physicalPage": 13
+  },
+  {
+    "title": "CHAPTER 5",
+    "page": 15,
+    "physicalPage": 15
+  },
+  {
+    "title": "PROBLEM SOLUTION",
+    "page": 15,
+    "physicalPage": 15
+  },
+  {
+    "title": "5.1 PROBLEM STATEMENT",
+    "page": 15,
+    "physicalPage": 15
+  },
+  {
+    "title": "5.2 Proposed System Overview",
+    "page": 15,
+    "physicalPage": 15
+  },
+  {
+    "title": "5.3 Working Principle",
+    "page": 15,
+    "physicalPage": 15
+  },
+  {
+    "title": "5.4 Storage and Display",
+    "page": 15,
+    "physicalPage": 15
+  },
+  {
+    "title": "5.5 Prediction and Decision Support",
+    "page": 16,
+    "physicalPage": 16
+  },
+  {
+    "title": "5.6 Live Data and Historical Data Separation",
+    "page": 16,
+    "physicalPage": 16
+  },
+  {
+    "title": "5.7 Example of End to End Processing",
+    "page": 16,
+    "physicalPage": 16
+  },
+  {
+    "title": "5.8 Prototype Deployment Arrangement",
+    "page": 17,
+    "physicalPage": 17
+  },
+  {
+    "title": "CHAPTER 6",
+    "page": 18,
+    "physicalPage": 18
+  },
+  {
+    "title": "BLOCK DIAGRAM",
+    "page": 18,
+    "physicalPage": 18
+  },
+  {
+    "title": "6.1 Overall System Architecture",
+    "page": 18,
+    "physicalPage": 18
+  },
+  {
+    "title": "6.2 Functional Units",
+    "page": 18,
+    "physicalPage": 18
+  },
+  {
+    "title": "6.3 System Working Flow",
+    "page": 19,
+    "physicalPage": 19
+  },
+  {
+    "title": "6.4 Communication Interface",
+    "page": 19,
+    "physicalPage": 19
+  },
+  {
+    "title": "6.5 Responsibilities of the Functional Blocks",
+    "page": 19,
+    "physicalPage": 19
+  },
+  {
+    "title": "6.6 Sequence of a Selected Snapshot Operation",
+    "page": 20,
+    "physicalPage": 20
+  },
+  {
+    "title": "CHAPTER 7",
+    "page": 21,
+    "physicalPage": 21
+  },
+  {
+    "title": "METHODOLOGY",
+    "page": 21,
+    "physicalPage": 21
+  },
+  {
+    "title": "7.1 System Overview",
+    "page": 21,
+    "physicalPage": 21
+  },
+  {
+    "title": "7.2 Hardware Components",
+    "page": 21,
+    "physicalPage": 21
+  },
+  {
+    "title": "7.3 Soil Moisture Sensor",
+    "page": 21,
+    "physicalPage": 21
+  },
+  {
+    "title": "7.4 Rain Sensor",
+    "page": 22,
+    "physicalPage": 22
+  },
+  {
+    "title": "7.5 DHT11 Sensor",
+    "page": 22,
+    "physicalPage": 22
+  },
+  {
+    "title": "7.6 ESP32 Controller",
+    "page": 23,
+    "physicalPage": 23
+  },
+  {
+    "title": "7.7 USB B Type Power Supply",
+    "page": 23,
+    "physicalPage": 23
+  },
+  {
+    "title": "7.8 Sensor Connections",
+    "page": 23,
+    "physicalPage": 23
+  },
+  {
+    "title": "7.9 Software Components",
+    "page": 24,
+    "physicalPage": 24
+  },
+  {
+    "title": "7.10 Data Acquisition and Conversion",
+    "page": 24,
+    "physicalPage": 24
+  },
+  {
+    "title": "7.11 Transmission and Server Validation",
+    "page": 24,
+    "physicalPage": 24
+  },
+  {
+    "title": "7.12 History and Area Update",
+    "page": 24,
+    "physicalPage": 24
+  },
+  {
+    "title": "7.13 Selected Reading Save",
+    "page": 24,
+    "physicalPage": 24
+  },
+  {
+    "title": "7.14 Linear Regression Algorithm",
+    "page": 25,
+    "physicalPage": 25
+  },
+  {
+    "title": "7.15 Limited History and Output Bounds",
+    "page": 25,
+    "physicalPage": 25
+  },
+  {
+    "title": "7.16 Classification and Irrigation Rules",
+    "page": 25,
+    "physicalPage": 25
+  },
+  {
+    "title": "7.17 Soil Probe Installation Procedure",
+    "page": 25,
+    "physicalPage": 25
+  },
+  {
+    "title": "7.18 Soil Calibration Method",
+    "page": 26,
+    "physicalPage": 26
+  },
+  {
+    "title": "7.19 Rain Sensor Installation and Response",
+    "page": 27,
+    "physicalPage": 27
+  },
+  {
+    "title": "7.20 DHT11 Acquisition and Placement",
+    "page": 27,
+    "physicalPage": 27
+  },
+  {
+    "title": "CHAPTER 8",
+    "page": 28,
+    "physicalPage": 28
+  },
+  {
+    "title": "RESULTS AND DISCUSSION",
+    "page": 28,
+    "physicalPage": 28
+  },
+  {
+    "title": "8.1 Hardware and Software Outputs",
+    "page": 28,
+    "physicalPage": 28
+  },
+  {
+    "title": "8.2 History and Selection Output",
+    "page": 28,
+    "physicalPage": 28
+  },
+  {
+    "title": "8.3 Illustrative Decision Examples",
+    "page": 28,
+    "physicalPage": 28
+  },
+  {
+    "title": "8.4 Discussion",
+    "page": 28,
+    "physicalPage": 28
+  },
+  {
+    "title": "8.5 Verification Checklist",
+    "page": 29,
+    "physicalPage": 29
+  },
+  {
+    "title": "8.6 Limitations",
+    "page": 29,
+    "physicalPage": 29
+  },
+  {
+    "title": "8.7 Component Verification Procedure",
+    "page": 29,
+    "physicalPage": 29
+  },
+  {
+    "title": "8.8 Endpoint Test Cases",
+    "page": 30,
+    "physicalPage": 30
+  },
+  {
+    "title": "8.9 Snapshot Selection Test Cases",
+    "page": 31,
+    "physicalPage": 31
+  },
+  {
+    "title": "8.10 Regression Verification Scenarios",
+    "page": 31,
+    "physicalPage": 31
+  },
+  {
+    "title": "8.11 Forecast Evaluation Plan",
+    "page": 32,
+    "physicalPage": 32
+  },
+  {
+    "title": "8.12 Storage and Performance Evaluation",
+    "page": 33,
+    "physicalPage": 33
+  },
+  {
+    "title": "8.13 Troubleshooting Guide",
+    "page": 33,
+    "physicalPage": 33
+  },
+  {
+    "title": "CHAPTER 9",
+    "page": 35,
+    "physicalPage": 35
+  },
+  {
+    "title": "CONCLUSION",
+    "page": 35,
+    "physicalPage": 35
+  },
+  {
+    "title": "9.1 Conclusion",
+    "page": 35,
+    "physicalPage": 35
+  },
+  {
+    "title": "9.2 Future Scope",
+    "page": 35,
+    "physicalPage": 35
+  },
+  {
+    "title": "9.3 Development Roadmap and Priorities",
+    "page": 36,
+    "physicalPage": 36
+  },
+  {
+    "title": "APPENDIX A SOURCE CODE AND DATA FORMAT",
+    "page": 37,
+    "physicalPage": 37
+  },
+  {
+    "title": "A.1 Controller Processing",
+    "page": 37,
+    "physicalPage": 37
+  },
+  {
+    "title": "A.2 Request Format",
+    "page": 37,
+    "physicalPage": 37
+  },
+  {
+    "title": "A.3 Stored Record Fields",
+    "page": 37,
+    "physicalPage": 37
+  },
+  {
+    "title": "APPENDIX B MATERIALS AND DEPLOYMENT",
+    "page": 38,
+    "physicalPage": 38
+  },
+  {
+    "title": "B.1 Materials Checklist",
+    "page": 38,
+    "physicalPage": 38
+  },
+  {
+    "title": "B.2 Deployment Procedure",
+    "page": 38,
+    "physicalPage": 38
+  },
+  {
+    "title": "APPENDIX B MATERIALS AND DEPLOYMENT",
+    "page": 39,
+    "physicalPage": 39
+  },
+  {
+    "title": "B.3 Practical Assembly Checklist",
+    "page": 39,
+    "physicalPage": 39
+  },
+  {
+    "title": "APPENDIX B MATERIALS AND DEPLOYMENT",
+    "page": 40,
+    "physicalPage": 40
+  },
+  {
+    "title": "B.4 Demonstration Procedure",
+    "page": 40,
+    "physicalPage": 40
+  },
+  {
+    "title": "APPENDIX B MATERIALS AND DEPLOYMENT",
+    "page": 41,
+    "physicalPage": 41
+  },
+  {
+    "title": "B.5 Evaluation Record Template",
+    "page": 41,
+    "physicalPage": 41
+  },
+  {
+    "title": "SUSTAINABLE DEVELOPMENT GOALS MAPPING",
+    "page": 42,
+    "physicalPage": 42
+  },
+  {
+    "title": "SDG 2 Zero Hunger",
+    "page": 42,
+    "physicalPage": 42
+  },
+  {
+    "title": "SDG 6 Clean Water and Sanitation",
+    "page": 42,
+    "physicalPage": 42
+  },
+  {
+    "title": "SDG 9 Industry Innovation and Infrastructure",
+    "page": 42,
+    "physicalPage": 42
+  },
+  {
+    "title": "SDG 12 Responsible Consumption and Production",
+    "page": 42,
+    "physicalPage": 42
+  },
+  {
+    "title": "REFERENCES",
+    "page": 43,
+    "physicalPage": 43
+  }
+]

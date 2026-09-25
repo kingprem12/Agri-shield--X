@@ -1,0 +1,15 @@
+{
+    "2026-08-01": {
+        "id": "flat_area_1",
+        "area_id": 1,
+        "temperature": 30,
+        "humidity": 65,
+        "soil_value": 2800,
+        "rain_value": 3200,
+        "action": "auto",
+        "recorded_at": "2026-08-06 12:19:11",
+        "source": "flat_file.ini",
+        "snapshot_date": "2026-08-01",
+        "saved_at": "2026-08-06 12:28:01"
+    }
+}

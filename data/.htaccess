@@ -1,0 +1,5 @@
+Options -Indexes
+<FilesMatch "\.(json|tmp)$">
+  Require all denied
+  Deny from all
+</FilesMatch>

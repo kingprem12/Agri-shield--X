@@ -1,0 +1,12 @@
+# Secrets
+secrets.h
+
+# Runtime data (sensor readings and PHP sessions stay local)
+data/sess_*
+data/**/*.tmp
+
+# Python / OS junk
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
