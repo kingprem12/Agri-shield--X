@@ -96,10 +96,12 @@ function sat_class($vhi) {
     foreach (sat_model()['drought_classes'] as $c) if ($vhi < $c['below']) return array('label' => $c['label'], 'class' => strtolower(strtok($c['label'], ' ')));
 }
 /* Forecast horizons 1-3 from origin month t for one cell; includes actual values when they exist (backtest). */
-function sat_forecast($cellId, $t) {
+function sat_forecast($cellId, $t, $override = null) {
     $model = sat_model(); $cell = sat_cell($cellId); if (!$cell) throw new Exception('Unknown grid cell.');
     if ($t < 11) throw new Exception('Choose a month from ' . sat_label(11) . ' onwards (12 months of history are needed).');
     $meta = sat_meta(); $series = sat_series($cellId, $t - 11, min($t + 3, $meta['months'] - 1)); $clim = sat_clim($cellId); $rows = array();
+    $observed = isset($series[$t]) ? $series[$t] : null;
+    if ($override && $observed) foreach (array('ndvi', 'lst', 'precip') as $k) if (isset($override[$k])) $series[$t][$k] = (float)$override[$k];
     foreach ($model['horizons'] as $h) {
         $x = sat_features($cell, $series, $clim, $t, $h);
         $ndvi = sat_predict($model['models']['ndvi_h' . $h], $x); $lst = sat_predict($model['models']['lst_h' . $h], $x);
@@ -108,7 +110,7 @@ function sat_forecast($cellId, $t) {
         if (isset($series[$t + $h])) { $a = $series[$t + $h]; $av = sat_vhi($a['ndvi'], $a['lst'], $clim[$m]); $row['actual'] = array('ndvi' => $a['ndvi'], 'lst' => $a['lst'], 'vhi' => $av, 'drought' => sat_class($av)); }
         $rows[] = $row;
     }
-    return array('cell' => $cell, 'origin' => sat_label($t), 'rows' => $rows, 'clim' => $clim);
+    return array('cell' => $cell, 'origin' => sat_label($t), 'rows' => $rows, 'clim' => $clim, 'observed' => $observed, 'inputs' => $series[$t]);
 }
 /* Predicted (or actual) VHI for every cell at one horizon; cached because it evaluates ~5k cells in PHP. */
 function sat_region_map($t, $h, $actual) {

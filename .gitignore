@@ -19,3 +19,4 @@ config.local.php
 data/satellite/sindh.db
 data/satellite/cache/
 data/satellite/*.tmp
+data/app.db

@@ -40,7 +40,12 @@ php ml/satellite/test_parity.php                                                
 - Split by time: train 2001–2017, validation 2018–2020 (PSO fitness), test 2021–2023
   (reported metrics, compared with persistence and climatology baselines).
 - PHP evaluates the exported trees directly (`satellite_engine.php`); Python is only needed to train.
-- Page: **Satellite Drought** in the top menu.
+- **Drought Predictor** page (`drought.php`, API `api/drought.php`): pick a Sindh city or click the map,
+  choose a month, and the model forecasts the next 3 months. The form auto-fills NDVI, LST and rainfall
+  from the satellite record; edit them for a what-if scenario. Predictions are logged in `data/app.db`
+  (local SQLite) and feed the KPI cards, history table and map markers.
+- **Satellite Report** page (`satellite.php`): full backtest view, regional forecast vs actual maps,
+  and the model evaluation table.
 
 The sensor-based forecast on the **Prediction** page (`ml/train_pso_lightgbm.py`) trains once
 enough ESP32 history has been collected; see `ml/README.md`.
